@@ -1,14 +1,12 @@
 'use strict';
+
 export class Calculator {
-   constructor(displayId, isFirstNumber, currentSymbol, newSymbol) {
-      this.isFirstNumber = isFirstNumber;
-      this.currentSymbol = currentSymbol;
-      this.newSymbol = newSymbol;
-      this.displayId = displayId;
+   constructor(displayId) {
+      this.display = document.getElementById(displayId);
+      this.numbersForOperations = [];
    }
 
    deleteNumber() {
-      const display = document.getElementById(this.displayId);
       if (display.innerText == 0) return;
       if (display.innerText != 0) {
          if (display.innerText.length == 1) {
@@ -20,40 +18,23 @@ export class Calculator {
    }
 
    showResult() {
-      const display = document.getElementById(this.displayId);
-      display.innerText = result;
+      try {
+         display.innerText = eval(display.innerText);
+      } catch (e) {
+         display.innerText = 'Error'
+         setTimeout(() => {
+            display.innerText = 0;
+         }, 1000)
+      }
    }
 
-   toggleSymbol() {
-      return this.currentSymbol = this.newSymbol;
-   }
-
-   addNumerToDisplay(event) {
-      const display = document.getElementById(this.displayId);
-      (display.innerText == 0)
-         ? display.innerText = event.target.textContent
-         : display.innerText += event.target.textContent;
-   }
-
-}
-
-export class Operations {
-   constructor(firstNumber, secondNumber) {
-      this.firstNumber = firstNumber;
-      this.secondNumber = secondNumber;
-   }
-
-   add() {
-      return this.firstNumber + this.secondNumber;
-   }
-   subtract() {
-      return this.firstNumber - this.secondNumber;
-   }
-   divide() {
-      return this.firstNumber / this.secondNumber;
-   }
-   multiply() {
-      return this.firstNumber * this.secondNumber;
+   addCharacterToDisplay(event) {
+      if (display.innerText != 0) {
+         display.innerText += event.target.textContent;
+      }
+      if (display.innerText == 0) {
+         display.innerText = event.target.textContent;
+      }
    }
 }
 

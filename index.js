@@ -1,5 +1,5 @@
 'use strict';
-import { Calculator, Operations } from './calculator.js';
+import { Calculator } from './calculator.js';
 
 document.addEventListener('DOMContentLoaded', addEventListeners);
 
@@ -7,11 +7,11 @@ function addEventListeners() {
 
    // botones numericos
    document.querySelectorAll('.btn-primary')
-      .forEach(button => button.addEventListener('click', event => calculator.addNumerToDisplay(event) ));
+      .forEach(button => button.addEventListener('click', event => calculator.addCharacterToDisplay(event) ));
 
    // botones de operciones
    document.querySelectorAll('.btn-secondary')
-      .forEach(button => button.addEventListener('click', () => calculator.toggleSymbol() ));
+      .forEach(button => button.addEventListener('click', event => calculator.addCharacterToDisplay(event) ));
 
    // boton de resolver
    document.querySelector('.btn-success')
@@ -23,4 +23,3 @@ function addEventListeners() {
 }
 
 const calculator = new Calculator('display');
-const operations = new Operations();
