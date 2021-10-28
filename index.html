@@ -6,49 +6,44 @@
    <link rel="stylesheet" href="bootstrap.min.css">
    <title>Calculator JS</title>
 </head>
-<body class="bg-dark">
+<body class="bg-dark d-flex justify-content-center align-items-center min-vh-100">
+   <div class="bg-light bg-opacity-10 d-inline">
 
-   <main class="container shadow-lg bg-light bg-opacity-10 rounded-3 mt-5 p-5 mx-auto mw-25">
-      <span type="text" id="display" class="form-control row mx-auto shadow rounded-pill" >0</span>
-      <div class="row align-items-center">
-         <div class="btn-group mt-3 gap-2">
-            <button class="btn btn-primary col" id="btn-1">1</button>
-            <button class="btn btn-primary col" id="btn-2">2</button>
-            <button class="btn btn-primary col" id="btn-3">3</button>
+      <div class="p-5 d-flex flex-column align-items-center">
+
+         <div class="bg-white rounded-3 w-100 mx-auto p-2">
+            <span id="displayPrevState" class="row mx-auto px-2 text-muted">0</span>
+            <span id="display" class="row mx-auto px-2 fs-3">0</span>
          </div>
-      </div>
-      <div class="row align-items-center mt-2">
-         <div class="btn-group gap-2">
-            <button class="btn btn-primary col">4</button>
-            <button class="btn btn-primary col">5</button>
-            <button class="btn btn-primary col">6</button>
+
+         <div class="gap-2 mt-4">
+            <button class="btn btn-primary">1</button>
+            <button class="btn btn-primary">2</button>
+            <button class="btn btn-primary">3</button>
+            <button class="btn btn-secondary">+</button>
          </div>
-      </div>
-      <div class="row align-items-center mt-2">
-         <div class="btn-group gap-2">
-            <button class="btn btn-primary col">7</button>
-            <button class="btn btn-primary col">8</button>
-            <button class="btn btn-primary col">9</button>
+         <div class="gap-2 my-2">
+            <button class="btn btn-primary">4</button>
+            <button class="btn btn-primary">5</button>
+            <button class="btn btn-primary">6</button>
+            <button class="btn btn-secondary">-</button>
          </div>
-      </div>
-      <div class="row align-items-center mt-2">
-         <div class="btn-group gap-2">
-            <button class="btn btn-danger col">Del</button>
-            <button class="btn btn-primary col">0</button>
-            <button class="btn btn-secondary col">+</button>
+         <div class="gap-2">
+            <button class="btn btn-primary">7</button>
+            <button class="btn btn-primary">8</button>
+            <button class="btn btn-primary">9</button>
+            <button class="btn btn-secondary">*</button>
          </div>
-      </div>
-      <div class="row align-items-center mt-2">
-         <div class="btn-group gap-2">
-            <button class="btn btn-secondary col">-</button>
-            <button class="btn btn-secondary col">*</button>
-            <button class="btn btn-secondary col">/</button>
+         <div class="gap-2 my-2">
+            <button class="btn btn-primary">0</button>
+            <button class="btn btn-warning">Del</button>
+            <button class="btn btn-danger">AC</button>
+            <button class="btn btn-secondary">/</button>
          </div>
+         <button class="btn btn-success mt-2 w-100">=</button>
+
       </div>
-      <div class="row align-items-center mt-2">
-            <button class="btn btn-success col">=</button>
-      </div>
-   </main>
+   </div>
 
    <script type="module" src="index.js"></script>
 </body>

@@ -1,40 +1,66 @@
 'use strict';
 
 export class Calculator {
-   constructor(displayId) {
-      this.display = document.getElementById(displayId);
-      this.numbersForOperations = [];
+   constructor(currentDisplay, previousDisplay) {
+      this.currentDisplay = currentDisplay;
+      this.previousDisplay = previousDisplay;
+      this.currentOperation = undefined;
+      this.previousNumbers = '';
+   }
+
+   reset() {
+      this.currentDisplay.innerText = '0';
+      this.previousDisplay.innerText = '0';
+      this.currentOperation = undefined;
+      this.previousNumbers = '';
    }
 
    deleteNumber() {
-      if (display.innerText == 0) return;
-      if (display.innerText != 0) {
-         if (display.innerText.length == 1) {
-            display.innerText = 0;
-         } else {
-            display.innerText = display.innerText.slice(0, -1);
-         }
+      if (this.currentDisplay.innerText.length === 1) {
+         this.currentDisplay.innerText = 0;
+      } else {
+         this.currentDisplay.innerText = this.currentDisplay.innerText.toString().slice(0, -1);
       }
    }
 
-   showResult() {
-      try {
-         display.innerText = eval(display.innerText);
-      } catch (e) {
-         display.innerText = 'Error'
-         setTimeout(() => {
-            display.innerText = 0;
-         }, 1000)
+   solve() {
+      if (this.currentDisplay.innerText.toString() === '0') return;
+      if (this.currentOperation === undefined) return;
+      const currentNumbers = parseInt(this.currentDisplay.innerText);
+      let answere;
+      switch (this.currentOperation) {
+         case '+':
+            answere = this.previousNumbers + currentNumbers;
+            break;
+         case '-':
+            answere = this.previousNumbers - currentNumbers;
+            break;
+         case '/':
+            answere = this.previousNumbers / currentNumbers;
+            break;
+         case '*':
+            answere = this.previousNumbers * currentNumbers;
+            break;
       }
+      this.previousNumbers = 0;
+      this.currentDisplay.innerText = answere;
+      this.previousDisplay.innerText = '0';
+      this.currentOperation = undefined;
    }
 
-   addCharacterToDisplay(event) {
-      if (display.innerText != 0) {
-         display.innerText += event.target.textContent;
-      }
-      if (display.innerText == 0) {
-         display.innerText = event.target.textContent;
-      }
+   setOperation(character) {
+      if (this.currentDisplay.innerText.toString() === '0') return;
+      this.currentOperation = character.toString();
+      this.previousNumbers = parseInt(this.currentDisplay.innerText);
+      this.addCharacterToDisplay(character);
+      this.previousDisplay.innerText = this.currentDisplay.innerText.toString();
+      this.currentDisplay.innerText = '0';
+   }
+
+   addCharacterToDisplay(character) {
+      parseInt(this.currentDisplay.innerText) === 0
+         ? this.currentDisplay.innerText = character.toString()
+         : this.currentDisplay.innerText += character.toString();
    }
 }
 
